@@ -1,0 +1,41 @@
+@font-face{
+  font-family: "Roboto";
+  src: url('./Roboto-Regular.ttf') 
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,body{
+  height: 100%;
+  font-family: "Roboto";
+  background: #7159c1;
+}
+
+.container{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+header{
+  width: 100%;
+  padding: 32px;
+  background-color: white;
+  text-align: center;
+}
+
+
+header ul li {
+  list-style: none;
+  display: inline-block;
+  padding: 0  20px;
+}
+
+header ul li a {
+  text-decoration: none;
+  
+}
