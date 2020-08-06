@@ -16,5 +16,12 @@ routes.get('/members', function(req, res){
   return res.send("members")
 })
 
+routes.get('/instructors/creat', function(req , res){
+  return res.render('instructors/creat')
+})
+
+routes.post('/instructors', function(req,res){
+  return res.send("Recibido")
+})
 
 module.exports = routes
