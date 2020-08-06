@@ -20,6 +20,7 @@ nunjucks.configure("views", {
 
 
 
+server.use(express.urlencoded({ extended: true}))
 server.use(routes)
 server.use(express.static("public/img"))
 server.use(express.static("public/videos"))
