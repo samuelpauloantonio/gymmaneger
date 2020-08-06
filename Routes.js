@@ -13,8 +13,8 @@ routes.get('/instructors', function(req, res){
 })
 
 
-routes.get('/members', function(req, res){
-  return res.send("members")
+routes.get('/instructors/members', function(req, res){
+  return res.render("instructors/members")
 })
 
 routes.get('/instructors/creat', function(req , res){
@@ -22,8 +22,11 @@ routes.get('/instructors/creat', function(req , res){
   return res.render('instructors/creat')
 })
 
+
+
 routes.post('/instructors', instructors.post)
 
+routes.get('/instructors/:id', instructors.show)
 
 
 module.exports = routes

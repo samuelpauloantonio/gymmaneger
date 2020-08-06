@@ -1,0 +1,51 @@
+{% extends "layout.njk" %}
+
+{% block content_members %}
+
+
+  <form  method="POST" action="/instructors" class="card" >
+  <section class="avatar members"></section>
+  <section class="details">
+
+    <h3>Professores</h3>
+
+    <div class="item">
+      <div> Nome Completo</div>
+      <div>
+        <input type="text" name = "nome" placeholder="Digite seu Nome">
+      </div>
+    </div>
+    
+    <div class="item">
+      <div>Idade</div>
+      <div>
+        <input type="date" name="Birth" />
+      </div>
+    </div>
+    <div class="item">
+      <div>Sexo</div>
+      <div>
+        <span> <input type="radio" name="escola"  value="Medio" checked >Medio </span>
+        <span> <input type="radio" name="escola"  value="Bacharelo"> Bacharelo</span>
+        <span> <input type="radio" name="escola"  value="Mestrado"> Mestrado</span>
+        <span> <input type="radio" name="escola"  value="Doutorado">Doutorado</span>
+      </div>
+    </div>
+
+    <div class="item">
+      <div>Área de atuação</div>
+      <div>
+        <input type="text" name="services" placeholder="Separe os Serviços" >
+      </div>
+    </div>
+    <div class="item">
+      <div>
+        <button type="submit">Enviar</button>
+      </div>
+      
+    </div>
+    
+  </section>
+</form>
+
+{% endblock %}
