@@ -1,0 +1,27 @@
+
+  
+    {% extends "layout.njk" %}
+
+{% block content_index %}
+<form  method="POST" action="/instructors?_method=PUT" class="card" >
+  <section class="avatar"></section>
+  <section class="details">
+
+    <h3>Editar  Instrutor</h3>
+
+    {% include  'instructors/fields.njk'%}
+
+
+  <div class="item">
+    <div>
+        <button  class="bt_red"type="submit">Delete</button>
+      </div>
+    </div>
+    
+  <input type="hidden" name="id" value= '{{instructor.id}}'>
+
+  </section>
+</form>
+
+
+{% endblock %}

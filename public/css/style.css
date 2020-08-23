@@ -147,7 +147,32 @@ ul li a:hover::after{
 }
 
 
+button, .bt{
+  width: 100%;
+  display: block;
+  background: var(--primmary-color);
+  border: 0;
+  padding: 8px 0;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
 
+.bt_red{
+  background:  lightcoral;
+}
+.bt_red:hover{
+  background: red;
+  transition: all 200ms ease-in;
+}
+
+input {
+  border: 0;
+}
+.item div input[novo=attr] {
+  width: 100%;
+}
 
 
 /*=== Animation ===*/
@@ -161,4 +186,89 @@ ul li a:hover::after{
   to {
     opacity: 1;
   }
+}
+
+
+/**=== Page Teatcher ===**/
+
+.info_teatcher {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.teatcher .container {
+  max-width: 800px;
+}
+
+.info_teatcher  .profile{
+  max-width: 130px;
+  margin:25px 0;
+
+}
+
+.profile img {
+  width: 100%;
+  border-radius: 100%;
+  border:2px solid greenyellow;
+}
+
+.about_teatcher{
+  width: 100%;
+}
+.about_teatcher form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+
+}
+
+.about_teatcher .item{
+  width: 100%;
+}
+.about_teatcher .item input{
+  padding:4px;
+  border: 0;
+  font-size: 14px;
+  border-radius: 2px;
+  outline: 0;
+}
+.about_teatcher .item span{
+  width: 100%;
+  display: block;
+  color: white;
+  padding: 8px 4px;
+}
+
+.about_teatcher .item:nth-of-type(3) span:not(:first-of-type){
+  display: inline;
+  color:black;
+}
+select {
+  background-color: white;
+  border: 0;
+  font-size: 13px;
+  padding: 4px;
+  border-radius: 2px;
+}
+
+select option{
+  color: gray;
+}
+select option:first-of-type{
+color:rgb(187, 34, 34);
+
+}
+
+
+#bt{
+  background:green;
+  margin-top: 33px;
+}
+
+#bt:hover{
+  background: rgb(1, 24, 1);
+  transition: all 200ms ease-in;
 }
