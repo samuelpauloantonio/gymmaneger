@@ -12,6 +12,10 @@ const { date, age, Datenow } = require('./date.js')
 //req.put actualiza os dados do  meu  documento 
 
 
+
+// method post aqui estou pegando dados da minha body atravez
+// da req.body e estou tratando os dados method POST
+
 exports.post = function(req, res){
   
   const keys = Object.keys(req.body)
@@ -53,6 +57,9 @@ let {url_avatar, name, Birth, age , services} = req.body
 }
 
 
+//aqui estou mostrando os dados pego e estou mostrabdo atravez req.params 
+// extraindo o id  e passando os dados pelo id methof GET
+
 exports.show = function(req , res){
   const { id } = req.params 
 
@@ -65,8 +72,7 @@ exports.show = function(req , res){
       return res.status(404).render('not_found')
   }
 
-  
-
+ 
   const instructor  = {
     ...foundInstructor,
 
@@ -88,6 +94,8 @@ exports.show = function(req , res){
 
 
 
+// aqui estou editando os dados passando pela req.params o id que
+//desejo editar method GET
 
 exports.edit = function(req , res){
 
@@ -113,8 +121,8 @@ exports.edit = function(req , res){
 
 
 
-
-
+//aqui estou actualizando os dados pegando pela minha req.body 
+//estou pegado o meu id que corresponde o meu index method PUT
 
 exports.put = function(req, res){
 
@@ -152,6 +160,32 @@ exports.put = function(req, res){
 
 }
 
+
+
+
+// aqui estou deletando o instructor filtrando os meu banco de dados e 
+//separando o id req.body com o do data_Base e salvando 
+
+exports.delete = function(req, res){
+  
+  const  { id } = req.body
+
+  const filterInstructors = data_Base.instructors.filter(function(instructor) {
+    
+     return instructor.id  != id
+
+    })
+     data_Base.instructors  = filterInstructors
+
+     fs.writeFile('data_base.json', JSON.stringify(data_Base, null, 2), (err) => {
+       
+      if(err) return  res.send('write file error')
+
+      return res.redirect('instructors')
+
+     })
+ 
+}
 
 
 

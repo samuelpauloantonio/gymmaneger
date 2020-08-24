@@ -23,10 +23,9 @@ routes.get('/instructors/creat', function(req , res){
   return res.render('instructors/creat')
 })
 
-routes.post('/instructors', instructors.post)
-routes.post('/teatcherForm', instructors.post)
 
-routes.put('/instructors', instructors.put)
+
+
 
 routes.get('/instructors/:id', instructors.show)
 
@@ -37,5 +36,14 @@ routes.get('/instructors/teatcher/:id', teatcher.showTeatcher)
 routes.get('/instructors/teatcher/:id/edit', teatcher.editTeatcher)
 
 
+
+
+routes.post('/instructors', instructors.post)
+
+routes.post('/teatcherForm', instructors.post)
+
+routes.put('/instructors', instructors.put)
+
+routes.delete('/instructors', instructors.delete)
 
 module.exports = routes
