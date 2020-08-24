@@ -12,25 +12,30 @@
       </div>
 
       <div class="about_teatcher">
-        <form action="/teatcherForm" method= 'post' >
+
+        <form action="/instructors/teatcher?_method=PUT" method= 'post'  >
           
           <div class="item">
           <span>Nome</span>
-            <input type="text" name="name" placeholder="Digite seu nome" value="{{teatcher.name}} ">
+            <input type="text" name="name" placeholder="Digite seu nome" value=" {{teatcher.name}} ">
           </div>
 
           <div class="item">
-          <span>Idade</span>
-             <span style="">{{teatcher.Birth}} </span>
+          <span>Birth date</span>
+            <input type="date" name="age" value="{{teatcher.Birth}} " >
           </div>
 
-          <div class="item" style="color:white">
+          <div class="item">
           <span>Sexo</span>
-            {%  if teatcher.age == "M"  %} Masculino{% endif %}
-            {%  if teatcher.age == "F"  %} Femenino {% endif %} 
+            <span>Masculino 
+              <input type="radio" name="sex"  value ='M' {% if teatcher.age == 'M' %} checked {% endif %}  >
+            </span>
+            <span>Femenino
+              <input type="radio" name="sex"  value ='F' id="" {% if teatcher.age == 'F' %} checked {% endif %}  >
+            </span>
           </div>
 
-           <div class="item">
+            <div class="item">
            <span>Graduation</span>
             <select name="graduation" id="">
               {% for item in teatcher.services %} 
@@ -40,8 +45,13 @@
           </div>
 
 
-          
 
+          <div class="item">
+          
+            <button type="submit" id='bt' >Enviar</button>
+          </div>
+
+          <input type="hidden" name="id" value='{{instructor.id}}'>
 
         </form>
       </div>

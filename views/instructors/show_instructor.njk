@@ -2,11 +2,20 @@
 
 {% block content_index %}
 <section class="card">
-  <section class="avatar"></section>
+    <div class="avatar"></div>
   <section class="details">
 
     <h3>Detalhes</h3>
-
+     <div class="item">
+          <div> Avatar URL</div>
+          <div>
+            <input  type="url" 
+            name = "url_avatar" 
+            placeholder="http://"
+            value= "{{instructor.url_avatar}} "/>
+            
+         </div>
+      </div>   
     <div class="item">
       <div>Instrutor</div>
       <div>{{instructor.name}} </div>

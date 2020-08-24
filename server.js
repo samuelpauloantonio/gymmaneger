@@ -24,7 +24,7 @@ server.use(express.urlencoded({ extended : true}))
 
 server.use(express.static("public/img"))
 server.use(express.static("public/videos"))
-server.use(express.static("public/js"))
+server.use(express.static("controllers"))
 server.use(express.static("public/css"))
 
 server.use(methodOverride('_method'))

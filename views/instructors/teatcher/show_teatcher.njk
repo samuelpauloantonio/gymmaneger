@@ -7,34 +7,35 @@
   
     <div class="info_teatcher">
     <h2 style='margin:16px; color:white ; text-transform:uppercase; font-size:16px' >Teatcher</h2>
+
+    
+      
       <div class="profile">
         <img src="/photo-profile.jpg" alt="photo-profile">
       </div>
 
       <div class="about_teatcher">
         <form action="/teatcherForm" method= 'post' >
+
+           
           
           <div class="item">
           <span>Nome</span>
-            <input type="text" name="name" placeholder="Digite seu nome" value=" {{teatcher.name}} ">
+            <input type="text" name="name" placeholder="Digite seu nome" value="{{teatcher.name}} ">
           </div>
 
           <div class="item">
-          <span>Birth date</span>
-            <input type="date" name="age" value="{{teatcher.Birth}} " >
+          <span>Idade</span>
+             <span style="">{{teatcher.Birth}} </span>
           </div>
 
-          <div class="item">
+          <div class="item" style="color:white">
           <span>Sexo</span>
-            <span>Masculino 
-              <input type="radio" name="sex"  value ='M' {% if teatcher.age == 'M' %} checked {% endif %}  >
-            </span>
-            <span>Femenino
-              <input type="radio" name="sex"  value ='F' id="" {% if teatcher.age == 'F' %} checked {% endif %}  >
-            </span>
+            {%  if teatcher.age == "M"  %} Masculino{% endif %}
+            {%  if teatcher.age == "F"  %} Femenino {% endif %} 
           </div>
 
-            <div class="item">
+           <div class="item">
            <span>Graduation</span>
             <select name="graduation" id="">
               {% for item in teatcher.services %} 
@@ -44,12 +45,7 @@
           </div>
 
 
-
-          <div class="item">
-          
-            <button type="submit" id='bt' >Enviar</button>
-          </div>
-
+          <a href="/instructors/teatcher/{{teatcher.id}}edit " class="bt" style='background:blue'>Editar</a>
 
 
         </form>
