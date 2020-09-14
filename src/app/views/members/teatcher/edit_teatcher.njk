@@ -1,0 +1,84 @@
+{% extends 'layout.njk' %}
+
+{% block teatcher %} 
+
+
+<section class="teatcher">
+ <div class="container">
+    
+ <div class="profile">
+  
+ </div>
+ 
+ 
+<div class="teatchers">
+  
+    <form  method= "post" action="/members/teatcher?_method=PUT"  id='teatcherD'>
+  <div > 
+    <p>Nome completo</p>
+    <input type="text" name ="name"  value='{{teatcher.name}}' placehold="Digite o seu Nome" >
+  </div>
+   <div > 
+    <p>Idade</p>
+    <input type="date" name="age" value ="{{teatcher.age}}" >
+  </div>
+   <div > 
+    <p>Sexo</p>
+    <select name="sex" id='select' >
+      <option value="Masculino">Masculino</option  {% if teatcher.sex == 'Masculino' %} selected {% endif %} >
+      <option value="Femenino" {% if teatcher.sex == 'Femenino' %} selected {% endif %} >Femenino</option>
+    </select>
+  </div>
+   <div > 
+    <p>Grau de Escolaridade</p>
+    <select name="scholl" id="select">
+      <option value="Escolher" disabled  selected>Escolher</option>
+      <option value="Medio" {% if teatcher.scholl == 'Medio' %} selected {% endif %} >Ensino Medio Completo</option>
+      <option value="Superior" {% if teatcher.scholl == 'Superior' %} selected {% endif %}  > Ensino Superior Completo</option>
+      <option value="Mestrado"{% if teatcher.scholl == 'Mestrado' %} selected {% endif %}  > Mestrado</option>
+      <option value="Doutotado" {% if teatcher.scholl == 'Doutorado' %} selected {% endif %}  >Doutorado</option>
+    </select>
+  </div>
+
+   <div id='radio' > 
+    <p>Tipo de Aula</p>
+    
+    <div id ='radio-child'>
+      <label for="presencial">Presencial</label>
+      <input type="radio" name="typeofclass" id="presencial" value ="Presencial" {% if teatcher.typeofclass == 'Presencial' %} checked {% endif %} >
+    </div>
+
+      <div id ='radio-child'>
+      <label for="adistancia">A distancia</label>
+      <input type="radio" name="typeofclass" id="adistancia" value ="A distancia" {% if teatcher.typeofclass2 == 'A distancia' %} checked {% endif %} >
+    </div>
+
+  </div>
+
+  <div>
+    <p>Área de Actuação</p>
+    <input type="text" name="lesson"  value = '{{teatcher.lesson}} '>
+  </div>
+  
+  <input type="hidden" name="id" value="{{teatcher.id}}">
+  <button type="submit"  class="tc" >Enviar</button>
+  
+  
+ </form>
+
+
+
+ <form  id="form-delete"  action="/members/teatcher?_method=DELETE" method="post" >
+  
+  <button type="submit" class='bt_red' > Deletar</button>
+  
+  <input type="hidden" name="id" value="{{teatcher.id}}">
+
+</form>
+</div><!--teatcher-->
+
+
+ </div><!--container-->
+</section>
+
+{% endblock %}

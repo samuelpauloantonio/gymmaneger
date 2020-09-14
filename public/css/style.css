@@ -5,11 +5,11 @@
 
 :root{
   --primmary-color:#7159c1;
-  --secundary-color:#F7DF1E;
+  --secundary-color:#F7DF1E; 
 }
-
+ 
 *{
-  margin: 0;
+  margin: 0; 
   padding: 0;
   box-sizing: border-box;
 }
@@ -32,6 +32,7 @@ header{
   background-color: white;
   text-align: center;
 }
+
 
 
 header ul li {
@@ -140,10 +141,10 @@ ul li a:hover::after{
 }
 
 
-.details .item span{
+.details .item span, #lesson{
   display: inline-block;
   background-color: var(--primmary-color);
-  font-size: 12px;
+  font-size: 12px !important;
   font-weight: bold;
   padding: 8px 16px;
   margin-right: 4px;
@@ -151,11 +152,12 @@ ul li a:hover::after{
   border-radius: 16px;
   margin-top: 8px;
   letter-spacing: 0.8px;
-  color:white;
+  color:white !important;
+  border-top-left-radius: 0px;
 }
 
 
-button, .bt{
+button, .bt {
   margin-top: 14px;
   width: 100%;
   display: block;
@@ -166,6 +168,11 @@ button, .bt{
   cursor: pointer;
   text-decoration: none;
   text-align: center;
+}
+
+.bt:hover{
+  background-color: #271f75;
+  transition: all 200ms ease-in ;
 }
 
 .bt_red{
@@ -187,6 +194,8 @@ input {
 
 
 
+
+
 /*=== Animation ===*/
 
 @keyframes up {
@@ -201,78 +210,9 @@ input {
 }
 
 
-/**=== Page Teatcher ===**/
 
-.info_teatcher {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.teatcher .container {
-  max-width: 800px;
-}
 
-.info_teatcher  .profile{
-  max-width: 130px;
-  margin:25px 0;
 
-}
-
-.profile img {
-  width: 100%;
-  border-radius: 100%;
-  border:2px solid greenyellow;
-}
-
-.about_teatcher{
-  width: 100%;
-}
-.about_teatcher form {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 15px;
-
-}
-
-.about_teatcher .item{
-  width: 100%;
-}
-.about_teatcher .item input{
-  padding:4px;
-  border: 0;
-  font-size: 14px;
-  border-radius: 2px;
-  outline: 0;
-}
-.about_teatcher .item span{
-  width: 100%;
-  display: block;
-  color: white;
-  padding: 8px 4px;
-}
-
-.about_teatcher .item:nth-of-type(3) span:not(:first-of-type){
-  display: inline;
-  color:black;
-}
-select {
-  background-color: white;
-  border: 0;
-  font-size: 13px;
-  padding: 4px;
-  border-radius: 2px;
-}
-
-select option{
-  color: gray;
-}
-select option:first-of-type{
-color:rgb(187, 34, 34);
-
-}
 
 
 #bt{
@@ -287,11 +227,12 @@ color:rgb(187, 34, 34);
 
 
 .table_container {
-  width: 800px;
+  width:900px;
   display: block;
   padding: 40px;
   border-radius: 8px;
 }
+
 
 .table_container table {
   width: 100%;
@@ -342,7 +283,7 @@ thead tr th:last-child  {
 tbody tr td:last-child  {
   text-align: center;
 }
-tbody tr td:last-child a{
+tbody tr td:last-child a, .table_container > a{
   text-align: center;
   background: var(--primmary-color);
   padding: 8px 16px;
@@ -351,4 +292,108 @@ tbody tr td:last-child a{
   border-radius: 4px;
   cursor: pointer;
   font-size: 12px;
+}
+
+.table_container > a{
+    margin: 16px;
+    display: inline-block;
+    padding: 10px 26px;
+}
+.members-card {
+  width: 900px;
+}
+
+/**=== Page Teatcher ===**/
+
+.profile{
+  background-image: url('/2077.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+}
+.teatcher .container {
+  margin: 34px auto;
+  width: 900px;
+  min-height: 400px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 8px 2%;
+}
+
+
+
+.profile img{
+  width: 100%;
+  height: 100%;
+}
+.teatchers{
+  background-color: rgb(255, 255, 255); 
+   padding: 30px 8%;
+}
+
+form#teatcherD> div {
+  width:100%;
+  padding: 14px 0;
+}
+
+form#teatcherD p {
+  font-size: 14px;
+  color: rgb(119, 119, 119);
+  letter-spacing: 0.7px;
+  line-height: 24px;
+}
+
+form#teatcherD input {
+  width: 100%;
+  padding: 8px 0%;
+  border-bottom: 1px solid #ccc;
+}
+
+
+
+button.tc {
+  margin: 30px 0;
+}
+
+#select {
+  font-size: 14px;
+  border: 0;
+  width: 100%;
+  margin-top: 18px;
+ 
+}
+
+#radio-child{
+  width: 100%;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr ;
+  padding: 8px 0;
+  
+  
+}
+
+label, input[type='radio']{
+  cursor: pointer;
+}
+
+#teatcherD span {
+  font-size: 18px;
+  color: rgb(85, 85, 85);
+  font-weight: bold;
+  display: inline-block;
+  padding: 10px 0;
+}
+
+#teatcherD div:last-of-type span{
+ padding: 8px 11px;
+ 
+}
+
+
+.table_container a:nth-of-type(2){
+  float:right;
+  clear: both;
+  background:#1eadd8 ;
 }

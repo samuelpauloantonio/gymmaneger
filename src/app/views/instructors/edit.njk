@@ -1,0 +1,53 @@
+
+  
+    {% extends "layout.njk" %}
+
+{% block content_index %}
+<div class="card">
+<section class="avatar"></section>
+
+
+  <section class="details">
+  <form  method="POST" action="/instructors?_method=PUT" >
+ 
+  
+
+    <h3>Editar  Instrutor</h3>
+
+    {% include  'instructors/fields.njk'%}
+    
+    <input type="hidden" name="id" value= '{{instructor.id}}'>
+
+ 
+</form>
+
+<form id ="form-delete" action="/instructors?_method=DELETE" method="post">
+  
+  <button type="submit" class='bt_red' > Deletar</button>
+  
+  <input type="hidden" name="id" value="{{instructor.id}} ">
+
+</form>
+ </section>
+
+
+</div>
+ 
+ <script>
+  
+    const  formDelete = document.querySelector('#form-delete')
+
+    formDelete.addEventListener('submit', function(event){
+    const conformEvent = confirm('do you like Delete this user?')
+
+    if(!conformEvent){
+      event.preventDefault()
+    }
+})
+
+ </script>
+
+
+
+
+{% endblock %}

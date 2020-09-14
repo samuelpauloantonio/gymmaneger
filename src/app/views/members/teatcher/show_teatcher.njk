@@ -1,0 +1,70 @@
+{% extends 'layout.njk' %}
+
+{% block teatcher %} 
+
+
+<section class="teatcher">
+ <div class="container">
+    
+ <div class="profile"></div>
+ 
+ <div class="teatchers">
+  <form  method= "post" action="" id="teatcherD" >
+  <div > 
+    <p>Nome completo</p>
+   <span>{{teatcher.name}} </span>
+  </div>
+   <div > 
+    <p>Idade</p>
+    <span>{{teatcher.age}} </span>
+  </div>
+   <div > 
+    <p>Sexo</p>
+      <span>
+        {% if teatcher.sex == 'Masculino'%} Masculino {% endif%}
+        {% if teatcher.sex == 'Femenino'%} femenino {% endif%}
+      </span>
+    
+  </div>
+   <div > 
+    <p>Grau de Escolaridade</p>
+    
+     <span>
+      {% if teatcher.scholl == 'Medio'%} Ensino Medio Completo {% endif%}
+     {% if teatcher.scholl == 'Superior'%} Ensino Superior Completo {% endif%}
+     {% if teatcher.scholl == 'Mestrado'%} Mestrado {% endif %}
+     {% if teatcher.scholl == 'Doutorado'%} Doutorado {% endif%}
+     </span>
+
+
+  </div>
+
+  <div id='radio' > 
+    <p>Tipo de Aula</p>
+    <span>
+      {{teatcher.typeofclass}}
+    </span>
+
+  </div>
+ 
+
+  <div>
+    <p>Área de Actuação</p>
+    
+    <span>
+      {% for lesson in teatcher.lesson %}
+         <span id ='lesson'> 
+          {{lesson}} 
+         </span>
+       {% endfor %}
+    </span>
+  </div>
+
+  <a href="/members/teatcher/{{teatcher.id}}/edit " class="bt" >Editar</a>
+ </form>
+ </div><!--teatchers-->
+
+ </div><!--container-->
+</section>
+
+{% endblock %}

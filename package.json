@@ -2,16 +2,17 @@
   "name": "modulo_04",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": " server.js",
   "scripts": {
     "start": "npm-run-all -p nodemon browsersync",
-    "nodemon": "nodemon server.js",
-    "browsersync": "browser-sync start --proxy localhost:2000 --files 'public, views' "
+    "nodemon": "nodemon src/server.js",
+    "browsersync": "browser-sync start --proxy localhost:4000 --files 'public, src' "
   },
   "dependencies": {
     "express": "^4.17.1",
     "method-override": "^3.0.0",
-    "nunjucks": "^3.2.2"
+    "nunjucks": "^3.2.2",
+    "pg": "^8.3.3"
   },
   "devDependencies": {
     "browser-sync": "^2.26.12",
