@@ -1,5 +1,4 @@
 const instructors = require('../models/db_instructors')
-const bancoDados = require('../../config/db')
 const {age, date} = require('../../lib/date')
 
 
@@ -16,8 +15,6 @@ module.exports = {
 
   },
 
-
-
   post(req, res) {
 
     const keys = Object.keys(req.body)
@@ -33,15 +30,13 @@ module.exports = {
   },
 
 
-
-
-
- 
-
   show(req, res) {
 
   instructors.find(req.params.id, function(instructor){
-    if(!instructors) return res.send('instructor not_found')
+    
+    if(!instructor) {
+      return res.send('instructor not_found')
+    }
 
     instructor.birth = age(instructor.birth)
     instructor.services = instructor.services.split(",")
@@ -52,9 +47,9 @@ module.exports = {
     
 
     
-  }
+  }, 
 
-  ,
+
 
   edit(req, res) {
 
@@ -65,10 +60,8 @@ module.exports = {
       
       
       return res.render('instructors/edit', {instructor})
-    })
+    }) 
   },
-
-
 
   put(req, res) {
 
@@ -91,7 +84,9 @@ module.exports = {
 
 
   delete(req, res) {
-    return
+    instructors.delete(req.body.id, function(){
+      return res.redirect("/instructors")
+    })
   },
 
 

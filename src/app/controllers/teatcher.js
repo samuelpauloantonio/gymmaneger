@@ -1,156 +1,61 @@
 
-const fs = require('fs')
 
-//const data_base = require('../../config/data_Base.json')
-const data_base =""
+const  functionBD = require('../models/db_teatcher')
+const {date, age} = require('../../lib/date')
 
-const { ageTeacher, date } = require('../../lib/utilsTeatcher')
+module.exports  =  {
 
- 
-
-exports.post = function(req, res){
-  
-   const keys = Object.keys(req.body)
-
-  for(key of keys){
-    if(req.body[key] == '') {
-  
-      return res.send('please fill all fields')
-    }
-  }
-
-
-  const id  = Number(data_base.teatcher.length + 1)
- 
-  data_base.teatcher.push({
-    id,
-    ...req.body,
-    age: Date.parse(req.body.age)
+  index(req, res){
     
-  })
-
-  fs.writeFile('data_base.json', JSON.stringify( data_base, null, 2), function(err) {
-    if(err) return res.send('tem algun erro')
-  })
+    functionBD.allTeatchers(function(teatchers){
+      return res.render('members/teatcher/index_teatcher',{teatchers})
+    })
+  },
 
   
+  post(req, res){
 
-  return res.redirect('/members/teatcher')
+    const keys = Object.keys(req.body)
 
-}
-
-
-
-
-
-exports.parms = function(req, res){
-
-  const  { id }  = req.params
-
-  const encontraTeacher   = data_base.teatcher.find(function(teatcher){
-    
-    return teatcher.id == id 
-  })
-
-  if(!encontraTeacher) return res.send("nao encontrei o teatcher")
-
-  const teatcher = {
-    ...encontraTeacher,
-    age:ageTeacher(encontraTeacher.age),
-    lesson:encontraTeacher.lesson.split(',')
-    
-  }
-
-  return res.render('members/teatcher/show_teatcher', { teatcher })
-}
-
-
-exports.edit = function(req, res){
-
-  const { id }  = req.params
-
-  const foundTeatcher = data_base.teatcher.find(function(teacher){
-    return teacher.id == id
-  })
-
-  if(!foundTeatcher){
-    return res.send('nao encotrei para editar')
-  }
-
-  const teatcher  = {
-    ...foundTeatcher,
-    age:date(foundTeatcher.age).iso
-  }
-
-  return res.render(`members/teatcher/edit_teatcher`, {teatcher})
-
-}
-
-
-exports.put = function(req, res){
-
-  let index = 0
-
-  const { id } = req.body 
-
-  const findTeacher = data_base.teatcher.find(function(teatcher , indexTeather){
-
-    if(teatcher.id == id){
-
-      index = indexTeather
-
-      return true
+    for(key of keys) {
+      if(req.body[key] == "") {
+        return res.send("Há campos vazios")
+      }
     }
     
-  })
+    functionBD.insertIntoDB(req.body, function(teatcher){
+      return res.redirect(`/members/teatcher/${teatcher.id}`)
+    })
+
+   
+
+  },
+
+  show(req, res){
+    
+    functionBD.showTeacher(req.params.id, function(teatcher){
+      if(!teatcher) return res.send("teatcher not_found")
 
 
-  if(!findTeacher){
-    return res.send("I  Not found the position of teacher")
+      teatcher.birth = age(teatcher.birth)
+      teatcher.lesson = teatcher.lesson.split(",")
+
+
+
+      return res.render('members/teatcher/show_teatcher', {teatcher})
+    })
+
+  },
+
+  edit(req, res){
+    
+    functionBD.showTeacher(req.params.id, function(teatcher){
+      if(!teatcher) return res.send("teatcher not_found")
+
+
+      teatcher.birth = date(teatcher.birth).iso
+
+      return res.render("members/teatcher/edit_teatcher", {teatcher})
+    })
   }
-
-  
-  const foundTeatcher = {
-
-    ...findTeacher,
-    ...req.body,
-    id: Number(findTeacher.id),
-    age: Date.parse(req.body.age)
-  }
-
-  data_base.teatcher[index] = foundTeatcher
-
-  fs.writeFile('data_Base.json', JSON.stringify(data_base, null , 2), function(err) {
-    if(err){
-      return res.send('aconteceu algun erro a  actulaizar os dados')
-    }
-  })
-
-  return res.redirect(`/members/teatcher/${id}`)
-}
-
-
-exports.delete = function(req, res){
-
-  const {id} = req.body
-
-  const FilterTeacher = data_base.teatcher.filter(function(teatcher){
-    return teatcher.id != id
-  })
-
-  data_base.teatcher = FilterTeacher 
-
-  fs.writeFile('data_Base.json', JSON.stringify(data_base, null , 2) ,function(err){
-    if(err) {
-      return res.send(erro)
-    }
-  })
-  
-  return res.redirect('/members/teatcher')
-
-}
-
-
-exports.index = function(req, res){
-  return res.render('members/teatcher/index_teatcher', { teatchers : data_base.teatcher })
 }

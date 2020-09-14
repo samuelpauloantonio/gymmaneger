@@ -20,20 +20,24 @@ module.exports = {
   },
   
 
-  age(timestamp){
-    const today = new Date()
-    const datebirth = new Date(timestamp)
+  age: function(timestamp){
 
-    let age = today.getFullYear() - datebirth.getFullYear()
-    const month = today.getMonth() - datebirth.getMonth()
-    
-    if(age < 0 || 
-      month == 0 && 
-      today.getDate() <=  datebirth.getDate())
-      age = age - 1
+    const date = new Date()
+    const birth  =  new Date(timestamp)
 
-      return age
+    let age  = date.getFullYear() - birth.getFullYear()
+    const month = date.getMonth() - birth.getMonth()
+
+    if(age < 0 ||
+       month == 0 && 
+       date.getDate() <= birth.getDate())
+       age = age - 1
+
+       return age
+
+
   },
+  
 
   Datenow(timestamp){
     const today = new Date(timestamp)

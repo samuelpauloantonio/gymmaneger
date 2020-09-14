@@ -1,68 +1,76 @@
 {% extends 'layout.njk' %}
 
-{% block teatcher %} 
+{% block teatcher %}
 
 
 <section class="teatcher">
- <div class="container">
-    
- <div class="profile">
-  
- </div>
- 
- <div class="teatchers">
-    <form  method= "post" action="/members/teatcher" id="teatcherD" >
-  <div > 
-    <p>Nome completo</p>
-    <input type="text" name ="name" placehold="Digite o seu Nome">
-  </div>
-   <div > 
-    <p>Idade</p>
-    <input type="date" name="age" >
-  </div>
-   <div > 
-    <p>Sexo</p>
-    <select name="sex" id='select' >
-      <option value="Masculino">Masculino</option>
-      <option value="Femenino">Femenino</option>
-    </select>
-  </div>
-   <div > 
-    <p>Grau de Escolaridade</p>
-    <select name="scholl" id="select">
-      <option value="Escolher" disabled  selected>Escolher</option>
-      <option value="Medio">Ensino Medio Completo</option>
-      <option value="Superior"> Ensino Superior Completo</option>
-      <option value="Mestrado"> Mestrado</option>
-      <option value="Doutorado">Doutorado</option>
-    </select>
-  </div>
+  <div class="container">
 
-   <div id='radio' > 
-    <p>Tipo de Aula</p>
-    <div id ='radio-child'>
-      <label for="presencial">Presencial</label>
-      <input type="radio" name="typeofclass" id="presencial" value ="Presencial" >
+    <div class="profile">
+
     </div>
 
-    <div id ='radio-child'>
-      <label for="adistancia">A distancia</label>
-    <input type="radio" name="typeofclass" id="adistancia" value ="A distancia"  >
+    <div class="teatchers">
+      <form method="post" action="/members/teatcher" id="teatcherD">
+
+        <div>
+          <p>URL Avatar</p>
+          <input type="url" name="url_avatar" placeholder="http://"/>
+        </div>
+
+        <div>
+          <p>Nome completo</p>
+          <input type="text" name="name" >
+        </div>
+        <div>
+          <p>Idade</p>
+          <input type="date" name="birth">
+        </div>
+        <div>
+          <p>Sexo</p>
+          <select name="sex" id='select'>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+          </select>
+        </div>
+        <div>
+          <p>Grau de Escolaridade</p>
+          <select name="school" id="select">
+            <option value="Escolher" disabled selected>Escolher</option>
+            <option value="Medio">Ensino Medio Completo</option>
+            <option value="Superior"> Ensino Superior Completo</option>
+            <option value="Mestrado"> Mestrado</option>
+            <option value="Doutorado">Doutorado</option>
+          </select>
+        </div>
+
+        <div id='radio'>
+          <p>Tipo de Aula</p>
+          <div id='radio-child'>
+            <label for="presencial">Presencial</label>
+            <input type="radio" name="typeofclass" id="presencial" value="Presencial">
+          </div>
+
+          <div id='radio-child'>
+            <label for="adistancia">A distancia</label>
+            <input type="radio" name="typeofclass" id="adistancia" value="A distancia">
+          </div>
+
+        </div>
+
+        <div>
+          <p>Área de Actuação</p>
+          <input type="text" name="lesson">
+        </div>
+
+        <button type="submit" class="tc">Enviar</button>
+
+      </form>
     </div>
+    <!--teachers-->
 
   </div>
-
-  <div>
-    <p>Área de Actuação</p>
-    <input type="text" name="lesson" >
-  </div>
-
-  <button type="submit"  class="tc" >Enviar</button>
-
- </form>
- </div><!--teachers-->
-
- </div><!--container-->
+  <!--container-->
 </section>
 
 {% endblock %}

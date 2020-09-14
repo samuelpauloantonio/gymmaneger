@@ -1,5 +1,7 @@
 
 //Separando as funcoes do banco de dados das funcoes do controllers
+
+
 const bancodeDados = require('../../config/db') 
 
 const {
@@ -12,7 +14,7 @@ module.exports = {
   
   all(callback){
     bancodeDados.query(`SELECT * FROM instructors `, (err, results)=>{
-      if(err) return res.send('erro com banco de dados no index')
+      if(err) throw `erro com banco de dados no index ${err}`
 
       callback(results.rows)
     })
@@ -45,7 +47,7 @@ module.exports = {
     ]
 
     bancodeDados.query(query, values, function(err, results){
-      if(err) return  res.send('erro ao gravar os ficheiros no banco de dados')
+      if(err)  throw `erro ao gravar os ficheiros no banco de dados ${err}`
 
       callback(results.rows[0].id)
 
@@ -93,6 +95,15 @@ module.exports = {
 
       callback()
 
+    })
+  },
+
+  delete(id, callback){
+
+    bancodeDados.query(`DELETE  FROM instructors WHERE id = $1`, [id], function(err, results){
+      if(err) throw `database error ${err}`
+
+      callback()
     })
   }
 }
