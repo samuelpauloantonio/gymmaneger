@@ -13,7 +13,7 @@
 
       <div class="about_teatcher">
 
-        <form action="/instructors/teatcher?_method=PUT" method= 'post'  >
+        <form action="/members/teatcher?_method=PUT" method= 'post'  >
           
           <div class="item">
           <span>Nome</span>
@@ -22,16 +22,16 @@
 
           <div class="item">
           <span>Birth date</span>
-            <input type="date" name="age" value="{{teatcher.Birth}} " >
+            <input type="date" name="birth" value="{{teatcher.birth}} " >
           </div>
 
           <div class="item">
           <span>Sexo</span>
             <span>Masculino 
-              <input type="radio" name="sex"  value ='M' {% if teatcher.age == 'M' %} checked {% endif %}  >
+              <input type="radio" name="sex"  value ='M' {% if teatcher.birth == 'M' %} checked {% endif %}  >
             </span>
             <span>Femenino
-              <input type="radio" name="sex"  value ='F' id="" {% if teatcher.age == 'F' %} checked {% endif %}  >
+              <input type="radio" name="sex"  value ='F' id="" {% if teatcher.birth == 'F' %} checked {% endif %}  >
             </span>
           </div>
 
@@ -51,7 +51,7 @@
             <button type="submit" id='bt' >Enviar</button>
           </div>
 
-          <input type="hidden" name="id" value='{{instructor.id}}'>
+          <input type="hidden" name="id" value='{{teatcher.id}}'>
 
         </form>
       </div>

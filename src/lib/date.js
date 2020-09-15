@@ -1,4 +1,5 @@
 module.exports = {
+  
   date(timestamp){
 
     const date = new Date(timestamp)

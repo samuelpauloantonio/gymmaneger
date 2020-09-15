@@ -2,11 +2,11 @@
   "name": "modulo_04",
   "version": "1.0.0",
   "description": "",
-  "main": " src/server.js",
+  "main": "src/server.js",
   "scripts": {
     "start": "npm-run-all -p nodemon browsersync",
     "nodemon": "nodemon src/server.js",
-    "browsersync": "browser-sync start --proxy localhost:4000 --files 'public, src' "
+    "browsersync": "browser-sync start --proxy localhost:4000 --files 'public,src' "
   },
   "dependencies": {
     "express": "^4.17.1",

@@ -26,18 +26,18 @@
 
     <div class="item">
       <div>Aniversário</div>
-      <div>{{member.Birth}}</div>
+      <div>{{member.birth}}</div>
     </div>
     
     <div class="item">
       <div>Sexo</div>
       <div>
 
-        {% if member.age == 'M'   %}
+        {% if member.sex == 'M'   %}
         Masculino
         {% endif %}
 
-        {% if member.age == 'F'   %}
+        {% if member.sex == 'F'   %}
         Femenino
         {% endif %}
       </div>

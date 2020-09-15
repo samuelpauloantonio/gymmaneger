@@ -13,10 +13,11 @@ const {
 module.exports = {
   
   all(callback){
-    bancodeDados.query(`SELECT * FROM instructors `, (err, results)=>{
+    bancodeDados.query(`SELECT * FROM instructors ORDER BY name ASC `, (err, results)=>{
       if(err) throw `erro com banco de dados no index ${err}`
 
       callback(results.rows)
+      
     })
   },
 

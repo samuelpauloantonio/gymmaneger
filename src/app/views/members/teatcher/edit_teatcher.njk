@@ -15,12 +15,16 @@
   
     <form  method= "post" action="/members/teatcher?_method=PUT"  id='teatcherD'>
   <div > 
+    <p>Url Avatar</p>
+    <input type="url" name ="url_avatar"  value='{{teatcher.url_avatar}}' placeholder="http://" >
+  </div>
+  <div > 
     <p>Nome completo</p>
-    <input type="text" name ="name"  value='{{teatcher.name}}' placehold="Digite o seu Nome" >
+    <input type="text" name ="name"  value='{{teatcher.name}}' placeholder="Digite o seu Nome" >
   </div>
    <div > 
     <p>Idade</p>
-    <input type="date" name="age" value ="{{teatcher.age}}" >
+    <input type="date" name="birth" value ="{{teatcher.birth}}" >
   </div>
    <div > 
     <p>Sexo</p>
@@ -31,12 +35,12 @@
   </div>
    <div > 
     <p>Grau de Escolaridade</p>
-    <select name="scholl" id="select">
+    <select name="school" id="select">
       <option value="Escolher" disabled  selected>Escolher</option>
-      <option value="Medio" {% if teatcher.scholl == 'Medio' %} selected {% endif %} >Ensino Medio Completo</option>
-      <option value="Superior" {% if teatcher.scholl == 'Superior' %} selected {% endif %}  > Ensino Superior Completo</option>
-      <option value="Mestrado"{% if teatcher.scholl == 'Mestrado' %} selected {% endif %}  > Mestrado</option>
-      <option value="Doutotado" {% if teatcher.scholl == 'Doutorado' %} selected {% endif %}  >Doutorado</option>
+      <option value="Medio" {% if teatcher.school == 'Medio' %} selected {% endif %} >Ensino Medio Completo</option>
+      <option value="Superior" {% if teatcher.school == 'Superior' %} selected {% endif %}  > Ensino Superior Completo</option>
+      <option value="Mestrado"{% if teatcher.school == 'Mestrado' %} selected {% endif %}  > Mestrado</option>
+      <option value="Doutotado" {% if teatcher.school == 'Doutorado' %} selected {% endif %}  >Doutorado</option>
     </select>
   </div>
 
@@ -61,6 +65,7 @@
   </div>
   
   <input type="hidden" name="id" value="{{teatcher.id}}">
+  
   <button type="submit"  class="tc" >Enviar</button>
   
   
@@ -80,5 +85,19 @@
 
  </div><!--container-->
 </section>
+
+
+<script>
+  const formDelete = document.querySelector('#form-delete')
+
+  formDelete.addEventListener("submit", (event)=>{
+
+    const confirmEvent = confirm('voce gostaria de deletar o teatcher')
+    
+    if(!confirmEvent){
+      envet.preventDefault()
+    }
+  })
+</script>
 
 {% endblock %}

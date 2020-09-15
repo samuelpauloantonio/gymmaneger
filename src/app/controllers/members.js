@@ -1,35 +1,53 @@
 
-const { date,  Datenow } = require('../../lib/date.js')
+const { date, age } = require('../../lib/date.js')
+
+const functionBD= require('../models/bd_members')
 
 
 
 module.exports = {
 
-  index(req, res){8
-    return res.render('members/index')
+  index(req, res){
+    functionBD.index(function(members){
+
+      return res.render('members/index', {members})
+    })
   },
   
   post(req, res){
-
     const keys = Object.keys(req.body)
+    for(key of keys){
 
-
-    for(let key of keys){
-      if(req.body[key] == ''){
-        return res.send("please fill all fields")
-      } 
-     
+      if(req.body[keys] == "") return res.send("please fill all fields")
     }
+
+
+    functionBD.enviadodados_BD(req.body, function(member){
+      return res.redirect('/members')
+    })
+
+
+
   },
 
   show(req, res){
-    return
+    functionBD.showMembers(req.params.id, function(member){
+
+      member.birth = age(member.birth)
+
+      return res.render('members/show_members', {member})
+    })
   }
 
   , 
 
   edit(req, res){
-    return
+    functionBD.showMembers(req.params.id, function(member){
+
+      member.birth = date(member.birth).iso
+
+      return res.render('members/edit',{member})
+    })
   },
 
 
@@ -43,12 +61,18 @@ module.exports = {
         return res.send('please fill all fiealds')
       }
     }
+
+    functionBD.update(req.body, () => {
+      return res.redirect(`/members/${req.body.id}`)
+    })
   },
 
 
 
   delete(req, res){
-    return 
+    functionBD.delete(req.body.id, ()=>{
+      return res.redirect('/members')
+    })
   },
 
 
