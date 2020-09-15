@@ -13,7 +13,12 @@ const {
 module.exports = {
   
   all(callback){
-    bancodeDados.query(`SELECT * FROM instructors ORDER BY name ASC `, (err, results)=>{
+    bancodeDados.query(` 
+    SELECT instructors. * , COUNT(members) total_studente
+    FROM instructors 
+    LEFT JOIN members ON (members.instructors_id = instructors.id)
+    GROUP BY instructors.id
+    ORDER BY name DESC `, (err, results)=>{
       if(err) throw `erro com banco de dados no index ${err}`
 
       callback(results.rows)
