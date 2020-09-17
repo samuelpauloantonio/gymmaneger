@@ -5,7 +5,22 @@
 
 <section class="card table_container" >
 
-<a href="/instructors/create">Novo</a>
+
+<header>
+<a class="bt" href="/instructors/create">Novo</a>
+
+<form action="/instructors" method="get">
+  <input type="text"
+   name="filter"
+    placeholder="Nome ou Atendimento " value={{filter}}
+    >
+
+  <button type="submit">Filtrar</button>
+</form>
+</header>
+
+
+
 
   <table>
     <thead>

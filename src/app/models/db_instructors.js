@@ -26,6 +26,23 @@ module.exports = {
     })
   },
 
+  findBy(filter, callback){
+    bancodeDados.query(` 
+    SELECT instructors. * , COUNT(members) total_studente
+    FROM instructors 
+    LEFT JOIN members ON (members.instructors_id = instructors.id)
+    WHERE instructors.name ILIKE '%${filter}%' 
+    or instructors.services ILIKE  '%${filter}%'
+    GROUP BY instructors.id
+    ORDER BY name DESC `, (err, results)=>{
+      if(err) throw `erro com banco de dados no index ${err}`
+
+      callback(results.rows)
+      
+    })
+  },
+
+
   EnviadoParaBandoDados(dados, callback){
     
     const query = `
