@@ -25,13 +25,21 @@ nunjucks.configure("src/app/views", {
 server.use(express.urlencoded({ extended : true}))
 
 server.use(express.static("src/app/controllers"))
+
+server.use(express.static("src/app/models"))
+
+server.use(express.static("src/libs"))
+
+
+server.use(express.static("src/config"))
+
 server.use(express.static("public/img"))
 server.use(express.static("public/videos"))
 server.use(express.static("public/css"))
 
 server.use(methodOverride('_method'))
 server.use(routes)
-
+ 
 
 
 /*server.use(function(req, res){

@@ -22,12 +22,11 @@ routes.get('/instructors/create', function(req , res){
 routes.get('/members/teatchers/creat', function(req, res){
   return res.render('members/teatcher/teatcher_creat.njk')
 })
-routes.get('/members/create', function(req , res){
-  return res.render('members/create')
-})
+
 
 
  
+routes.get('/members/create', members.create)
 
 routes.get('/members/teatcher', teatcher.index)
 
@@ -60,7 +59,7 @@ routes.post('/members/teatcher', teatcher.post)
 routes.put('/instructors', instructors.put)
 routes.put('/members', members.put)
 routes.put('/members/teatcher', teatcher.put)
-//routes.put('/members/teatcher', teatcher.put)
+
 
 
 routes.delete('/instructors', instructors.delete)

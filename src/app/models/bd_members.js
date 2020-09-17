@@ -21,8 +21,9 @@ module.exports = {
         sex,
         blood,
         weight,
-        height
-      )VALUES($1, $2, $3, $4, $5, $6,$7, $8)
+        height,
+        instructors_id
+      )VALUES($1, $2, $3, $4, $5, $6,$7, $8, $9)
       RETURNING id
     `
 
@@ -31,11 +32,12 @@ module.exports = {
       dados.url_avatar,
       dados.name,
       dados.email,
-      date( dados.birth).iso,
+      date(dados.birth).iso,
       dados.sex,
       dados.blood,
       dados.weight,
       dados.height,
+      dados.instructor
     ]
 
 
@@ -48,7 +50,9 @@ module.exports = {
 
 
   showMembers(id, callback){
-    bancodeDados.query(`SELECT * FROM members WHERE id = $1`, [id], function(err, results){
+    bancodeDados.query(`SELECT members.*, instructors.name AS instructor_name
+    FROM members LEFT JOIN instructors ON (members.instructors_id = instructors.id)
+     WHERE members.id = $1`, [id], function(err, results){
       if(err) throw `exibir members ${err}`
 
       callback(results.rows[0])
@@ -68,9 +72,10 @@ module.exports = {
         sex  = ($5),
         blood  = ($6),
         weight  = ($7),
-        height  = ($8)
+        height  = ($8),
+        instructors_id = ($9)
 
-    WHERE id = $9
+    WHERE id = $10
       
     `
 
@@ -84,6 +89,7 @@ module.exports = {
       dados.blood,
       dados.weight,
       dados.height,
+      dados.instructor,
       dados.id
     ]
 
@@ -101,6 +107,15 @@ module.exports = {
       if(err) throw `erro ao deletar o members ${err}`
       
       callback()
+    })
+  }, 
+
+  instructorsOptions(callback){
+
+    bancodeDados.query(`SELECT name, id FROM instructors `, function(err, results) {
+      if(err) throw `database error ${err} `
+
+      callback(results.rows)
     })
   }
 

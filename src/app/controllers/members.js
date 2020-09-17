@@ -5,6 +5,7 @@ const functionBD= require('../models/bd_members')
 
 
 
+
 module.exports = {
 
   index(req, res){
@@ -13,6 +14,15 @@ module.exports = {
       return res.render('members/index', {members})
     })
   },
+
+
+
+  create(req, res){
+    functionBD.instructorsOptions(function(instructor){
+      return res.render('members/create', { instructorOptions : instructor })
+    })
+  },
+
   
   post(req, res){
     const keys = Object.keys(req.body)
@@ -22,7 +32,7 @@ module.exports = {
     }
 
 
-    functionBD.enviadodados_BD(req.body, function(member){
+    functionBD.enviadodados_BD(req.body, function(){
       return res.redirect('/members')
     })
 
@@ -34,8 +44,8 @@ module.exports = {
     functionBD.showMembers(req.params.id, function(member){
 
       member.birth = age(member.birth)
-
-      return res.render('members/show_members', {member})
+        return res.render('members/show_members', { member})
+   
     })
   }
 
@@ -46,7 +56,9 @@ module.exports = {
 
       member.birth = date(member.birth).iso
 
-      return res.render('members/edit',{member})
+      functionBD.instructorsOptions(function(instructor){
+        return res.render('members/edit', { member , instructorOptions : instructor })
+      })
     })
   },
 
@@ -74,6 +86,8 @@ module.exports = {
       return res.redirect('/members')
     })
   },
+
+
 
 
 }
