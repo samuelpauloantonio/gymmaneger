@@ -75,7 +75,7 @@ module.exports = {
     }
 
     functionBD.update(req.body, () => {
-      return res.redirect(`/members/${req.body.id}`)
+      return res.redirect(`/members`)
     })
   },
 

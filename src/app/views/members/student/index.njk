@@ -1,0 +1,52 @@
+{% extends "layout.njk" %}
+
+{% block content_index %}
+
+
+<section class="card table_container" >
+
+<a href="/members/student/create">Novo</a>
+
+
+
+  <table>
+
+    <thead>
+
+      <tr>
+          <th>students</th>
+          <th>Email</th>
+          <th>Peso</th>
+          <th>Altura</th>
+          <th>Ação</th>
+      </tr>
+
+    </thead>
+    <tbody>
+     
+    {% for student in students %}
+  
+      <tr>
+        <td>
+           <span style="background-image: url('/photo-profile.jpg')";>
+           </span>
+          {{student.name}} 
+        </td>
+
+        <td> {{student.email}} </td>
+        <td> {{student.weight}} kg</td>
+        <td> {{student.height}} m </td>
+        
+        <td> <a href="/members/student/{{student.id}}" >Ver </a> </td>
+      </tr>
+    
+    {% endfor %}
+      
+    </tbody>
+
+
+  </table>
+
+</section>
+
+{% endblock %}

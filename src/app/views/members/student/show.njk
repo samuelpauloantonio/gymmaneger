@@ -1,0 +1,89 @@
+{% extends "layout.njk" %}
+
+{% block content_index %}
+<section class="card">
+  <div class="avatar"></div>
+  <section class="details">
+
+    <h3>Detalhes</h3>
+
+    <div class="item">
+      <div> Avatar URL</div>
+      <div>
+        {{student.url_avatar}}
+      </div>
+    </div>
+
+    <div class="item">
+      <div>Membro</div>
+      <div>{{student.name}} </div>
+    </div>
+
+    <div class="item">
+      <div>Email</div>
+      <div>{{student.email}} </div>
+    </div>
+
+    <div class="item">
+      <div>Aniversário</div>
+      <div>{{student.birth}}</div>
+    </div>
+    
+    <div class="item">
+      <div>Sexo</div>
+      <div>
+
+        {% if student.sex == 'M'   %}
+        Masculino
+        {% endif %}
+
+        {% if student.sex == 'F'   %}
+        Femenino
+        {% endif %}
+      </div>
+    </div>
+
+
+
+    <div class="item">
+      <div>Tipo sanguineo</div>
+
+      <div>
+
+        {% if student.blood == 'A1' %} A+ {% endif %}
+        {% if student.blood == 'A0' %} A- {% endif %}
+        {% if student.blood == 'B1' %} B+ {% endif %}
+        {% if student.blood == 'B0' %} B- {% endif %}
+        {% if student.blood == 'AB1' %} AB+ {% endif %}
+        {% if student.blood == 'AB0' %} AB- {% endif %}
+        {% if student.blood == 'O1' %} O+ {% endif %}
+        {% if student.blood == 'O0' %} O- {% endif %}
+
+      </div>
+
+    </div>
+
+
+
+    <div class="item">
+      <div>Peso (kg)</div>
+      <div>{{student.weight}} </div>
+    </div>
+
+    <div class="item">
+      <div>Altura (cm)</div>
+      <div>{{student.height}} </div>
+    </div>
+
+     <div class="item">
+      <div>Instructor</div>
+      <div>{{student.instructor_name}} </div>
+    </div>
+
+
+    <a href="/members/student/{{student.id}}/edit " class="bt">Editar</a>
+  </section>
+
+</section>
+
+{% endblock %}

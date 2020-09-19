@@ -53,6 +53,7 @@ module.exports = {
     bancodeDados.query(`SELECT members.*, instructors.name AS instructor_name
     FROM members LEFT JOIN instructors ON (members.instructors_id = instructors.id)
      WHERE members.id = $1`, [id], function(err, results){
+       
       if(err) throw `exibir members ${err}`
 
       callback(results.rows[0])
@@ -96,14 +97,14 @@ module.exports = {
     bancodeDados.query(query, values, function(err, results){
       if(err) throw `erro ao actualizar os banco de Dados ${err}`
 
-      callback()
+      callback(results.rows)
     })
   },
 
 
 
   delete(id, callback){
-    bancodeDados.query(`SELECT  FROM members WHERE id = $1`, [id], (err, results)=>{
+    bancodeDados.query(`DELETE  FROM members WHERE id = $1`, [id], (err, results)=>{
       if(err) throw `erro ao deletar o members ${err}`
       
       callback()

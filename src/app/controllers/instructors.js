@@ -36,9 +36,9 @@ module.exports = {
       if (req.body[key] == '') return res.send(' campos vazios ')
     }
 
-   instructors.EnviadoParaBandoDados(req.body, function(callback){
+   instructors.EnviadoParaBandoDados(req.body, function(id){
 
-     return res.redirect(`/instructors/${callback.id}`)
+     return res.redirect(`/instructors/${id}`)
    })
   },
 
