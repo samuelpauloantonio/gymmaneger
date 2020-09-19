@@ -4,10 +4,12 @@ const { age, date}  = require('../../lib/date')
 
 
 
+
 module.exports = {
 
 
  index(req, res){
+   
    students.showStudent_Index(function(Allstudents){
       return res.render('members/student/index', {students : Allstudents})
    })
@@ -15,7 +17,9 @@ module.exports = {
 
 
   create (req, res){
-    return res.render('members/student/create')
+    students.OptionsTeactchers((Teactchers)=>{
+      return res.render('members/student/create', {OptionsTeactchers : Teactchers} )
+    })
   },
 
 
@@ -48,6 +52,8 @@ module.exports = {
     })
  },
 
+
+
  edit(req,  res){
     students.showStudent_single(req.params.id , function(student){
 
@@ -55,12 +61,23 @@ module.exports = {
       
       student.birth = date(student.birth).iso
 
-      return res.render('members/student/edit', {student})
+      students.OptionsTeactchers(function(teatchers){
+
+        return res.render('members/student/edit', {student,  OptionsTeactchers : teatchers})
+      })
+    
     })
  },
 
 
  updateStudent(req, res){
+  const keys = Object.keys(req.body)
+
+  for (key of keys) {
+    if (req.body[key] == "") {
+      return res.send("Há campos vazios")
+    }
+  }
 
   students.updateStudant(req.body, function(){
 

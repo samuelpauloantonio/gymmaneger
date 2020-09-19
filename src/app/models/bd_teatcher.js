@@ -4,9 +4,32 @@ const bdTeatchers = require('../../config/db_teatchers')
 module.exports = {
 
   allTeatchers(callback){
-    bdTeatchers.query(`SELECT * FROM teatchers ORDER BY name ASC `, function(err, results){
+    bdTeatchers.query(`
+    
+    SELECT teatchers .*, 
+    count(students) as total_students 
+    FROM teatchers LEFT JOIN students
+    ON (students.teatchers_id = teatchers.id)  
+    group BY teatchers.id  
+    order by  teatchers.id`, function(err, results){
       if(err) throw `database error ${err}`
 
+      callback(results.rows)
+    })
+  },
+
+  filter(filter, callback){
+    bdTeatchers.query(`
+    SELECT teatchers .*, 
+    count(students) as total_students 
+    FROM teatchers LEFT JOIN students
+    ON (students.teatchers_id = teatchers.id)  
+    WHERE teatchers.name ILIKE '%${filter}%' 
+    or teatchers.typeofclass ILIKE '%${filter}%'
+    
+    group BY teatchers.id  ` , (err, results)=> {
+      if(err) throw `ERROR ao filtrar a bancode Dados ${err}`
+      
       callback(results.rows)
     })
   },

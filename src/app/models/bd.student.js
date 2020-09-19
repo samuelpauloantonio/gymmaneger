@@ -19,8 +19,9 @@ module.exports = {
         sex,
         blood,
         weight,
-        height
-      ) VALUES( $1, $2, $3, $4, $5, $6, $7, $8 )
+        height,
+        teatchers_id
+      ) VALUES( $1, $2, $3, $4, $5, $6, $7, $8, $9 )
       RETURNING id
     ` 
 
@@ -33,6 +34,7 @@ module.exports = {
         dados.blood,
         dados.weight,
         dados.height,
+        dados.teatchers
     ]
 
 
@@ -52,8 +54,19 @@ module.exports = {
     } )
   },
 
+
+
+ 
+
   showStudent_single(id, callback){
-    bancodeDados.query(`SELECT * FROM students WHERE id = $1`, [id], (err, results) => {
+
+    bancodeDados.query(`
+    SELECT students.*, 
+    teatchers.name AS teatchers_name 
+    FROM students LEFT JOIN teatchers 
+    ON  (students.teatchers_id = teatchers.id) 
+
+    where students.id  = $1`, [id], (err, results) => {
       if(err) throw `erro ao  buscar um estudante do base de dados ${err}`
       
       callback(results.rows[0])
@@ -74,9 +87,10 @@ module.exports = {
       sex = ($5),
       blood = ($6) ,
       weight= ($7) ,
-      height = ($8)
+      height = ($8),
+      teatchers_id = ($9)
 
-    WHERE id = $9
+    WHERE id = $10
     
   ` 
 
@@ -89,6 +103,7 @@ module.exports = {
       dados.blood,
       dados.weight,
       dados.height,
+      dados.teatchers,
       dados.id
   ]
 
@@ -106,6 +121,15 @@ module.exports = {
       if(err)  throw `erro ao deletar da base de Dados ${err}`
 
       callback()
+    })
+  },
+
+
+  OptionsTeactchers(callback){
+    bancodeDados.query(`SELECT id , name from  teatchers`, (err, results) =>{
+      if(err) throw `err ao exibir o id e o name dos teachers ${err}`
+
+      callback(results.rows)
     })
   }
 

@@ -82,19 +82,20 @@
   </div>
 </div>
 
-<!--
+
     <div class="item">
       <div>Teatcher</div>
 
-      <select name="instructor" id="select" >
-        <option value="" selected disabled>Escolher Instructor</option>
-        {% for  instructor in instructorOptions%}
-          <option value="{{instructor.id}}"{% if student.instructors_id == instructor.id %} selected {% endif %} >{{instructor.name}}</option>
-        {%endfor%}
+      <select name="teatchers" id="select">
 
-          
+      <option value="" selected disabled >Escolher o Teatcher</option>
+
+        {%for teatchers in OptionsTeactchers %}
+          <option value="{{teatchers.id}}" {% if student.teatchers_id == teatchers.id %} selected {% endif %} > {{teatchers.name}}</option>
+        {%endfor%}
       </select>
-    </div> -->
+
+    </div> 
 
     
 

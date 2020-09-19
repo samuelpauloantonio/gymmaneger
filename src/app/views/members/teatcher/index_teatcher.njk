@@ -5,8 +5,25 @@
 
 <section class="card table_container" >
 
-<a href="/members/teatchers/creat">Novo</a>
-<a style="background:orange !important;" href="/members/student">Estudante</a>
+
+
+<header class="header_teatcher" >
+
+<a href="/members/teatchers/creat" class='link_a'>Novo</a>
+
+<a style="background:orange !important;" href="/members/student" class='link_a'>Estudante</a>
+
+
+<form action="/members/teatcher" method="GET" class="header_form" >
+
+  <input type="text"
+   name="filter"
+    placeholder="Nome ou Atendimento " value={{filter}}
+    >
+
+  <button type="submit">Filtrar</button>
+</form>
+</header>
 
 
   <table>
@@ -17,6 +34,7 @@
           <th>Teacher</th>
           <th>Área de Actuação</th>
           <th>Tipo de Aula</th>
+          <th>Estudantes</th>
           <th>Ação</th>
       </tr>
 
@@ -34,6 +52,7 @@
 
         <td>{{teatcher.lesson}}</td>
         <td>{{teatcher.typeofclass}} </td>
+        <td>{{teatcher.total_students}} </td>
       
         
         <td> <a href="/members/teatcher/{{teatcher.id}} " >Ver </a> </td>
