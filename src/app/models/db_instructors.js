@@ -14,9 +14,9 @@ module.exports = {
   
   all(callback){
     bancodeDados.query(` 
-    SELECT instructors. * , COUNT(members) total_studente
+    SELECT instructors. * , COUNT(members) total_students
     FROM instructors 
-    LEFT JOIN members ON (members.instructors_id = instructors.id)
+    LEFT JOIN members ON (instructors.id  = members.instructors_id )
     GROUP BY instructors.id
     ORDER BY name DESC `, (err, results)=>{
       if(err) throw `erro com banco de dados no index ${err}`
@@ -28,7 +28,7 @@ module.exports = {
 
   findBy(filter, callback){
     bancodeDados.query(` 
-    SELECT instructors. * , COUNT(members) total_studente
+    SELECT instructors. * , COUNT(members) total_students
     FROM instructors 
     LEFT JOIN members ON (members.instructors_id = instructors.id)
     WHERE instructors.name ILIKE '%${filter}%' 
@@ -128,5 +128,42 @@ module.exports = {
 
       callback()
     })
+  },
+
+
+  paginate(params){
+
+    let {filter, limit , offset, callback} = params
+
+
+  let query = `
+    SELECT instructors.*,
+    COUNT(members) As totals_students
+    FROM instructors LEFT JOIN members
+    ON ( instructors.id  = members.instructors_id )
+   `
+
+    if(filter){
+      query = `${query}
+      
+        WHERE  instructors.name ILIKE '%${filter}%'
+        OR instructors.services ILIKE '%${filter}%'
+      `
+    }
+    query = `${query}
+      GROUP BY  instructors.id  LIMIT $1 OFFSET $2
+    `
+
+    bancodeDados.query(query, [limit, offset], (err, results)=>{
+      if(err) throw `erro ao limitar o results ${err}`
+      
+      callback(results.rows)
+    })
+
+
   }
+
+
+  
+
 }

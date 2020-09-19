@@ -7,19 +7,40 @@ module.exports = {
 
   index(req, res) {
 
-  const {filter} = req.query
+    let {filter, page , limit} = req.query
 
-  if(filter){
+    page = page || 1
 
-    instructors.findBy(filter, function(instructors){
-      return res.render('instructors/index', {instructors, filter})
-    })
+    limit = limit || 4
 
-  }else{
-    instructors.all(function(instructors){
-      return res.render('instructors/index', {instructors})
-    })
-  }
+    let offset = limit * (page - 1)
+
+    const params = {
+      filter,
+      limit, 
+      offset,
+      
+      callback(instructors){
+        return  res.render("instructors/index",{filter, instructors})
+      }
+    }
+
+    instructors.paginate(params)
+
+
+
+
+  // if(filter){
+
+  //   instructors.findBy(filter, function(instructors){
+  //     return res.render('instructors/index', {instructors, filter})
+  //   })
+
+  // }else{
+  //   instructors.all(function(instructors){
+  //     return res.render('instructors/index', {instructors})
+  //   })
+  // } 
       
 
       
