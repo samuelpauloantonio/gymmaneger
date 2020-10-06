@@ -20,27 +20,32 @@ nunjucks.configure("src/app/views", {
 })
 
 
-  
 
-server.use(express.urlencoded({ extended : true}))
 
 
 server.use(methodOverride('_method'))
+server.use(express.urlencoded({ extended : true}))
+
+
+
+server.use(express.static("src/lib"))
 server.use(express.static("public/img"))
 server.use(express.static("public/css"))
-server.use(express.static("src/config"))
-server.use(express.static("src/app/models"))
-server.use(express.static("src/app/controllers"))
 
-
-
-server.use(express.static("src/libs"))
 
 
 
 
 
 server.use(routes)
+
+
+
+
+
+
+
+
  
 
 
@@ -50,6 +55,6 @@ server.use(routes)
 
 
 
-server.listen(4000, function(){
+server.listen(6000, function(){
   console.log("servidor is running")
 })

@@ -11,7 +11,7 @@ module.exports = {
 
     page = page || 1
 
-    limit = limit || 4
+    limit = limit || 2
 
     let offset = limit * (page - 1)
 
@@ -21,7 +21,8 @@ module.exports = {
       offset,
       
       callback(instructors){
-        return  res.render("instructors/index",{filter, instructors})
+        
+        return  res.render("instructors/index",{instructors})
       }
     }
 
